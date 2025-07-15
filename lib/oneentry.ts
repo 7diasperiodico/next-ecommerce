@@ -1,8 +1,8 @@
  import { defineOneEntry } from 'oneentry';
 
- import retrieveRefreshToken from '@/action/auth/retrieveRefreshToken';
+ import retrieveRefreshToken from '@/actions/auth/retrieveRefreshToken';
 
- import storeRefreshToken from '@/action/auth/storeRefreshToken';
+ import storeRefreshToken from '@/actions/auth/storeRefreshToken';
 
  export type ApiClientType = ReturnType<typeof defineOneEntry> | null;
 
@@ -12,6 +12,8 @@
     // Retrieve the API URL from environment variables
 
     const apiUrl = process.env.ONEENTRY_PROJECT_URL;
+
+    console.log('API URL:', apiUrl); // Log the API URL for debugging
 
     //Throw an error if the API URL is not defined
 
