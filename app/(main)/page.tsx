@@ -8,7 +8,7 @@
 
  import { getCatalogWithProducts } from '@/actions/catalog/getCatalogWithProducts';
 
- import ProductCatalog from '@/components/ProductCatalog';
+ import ProductCatalog from '@/components/productCatalog';
 
  import { ICatalog } from '@/types/catalog';
 
