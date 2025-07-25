@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { getCatalogWithProducts } from '@/actions/catalog/getCatalogWithProducts';
 
-import ProductCatalog from '@/components/productCatalog';
+import ProductCatalog from '@/components/productCatalog'; 
 import { ICatalog } from '@/types/catalog';
 import { IProductsEntity } from 'oneentry/dist/products/productsInterfaces';
 
