@@ -1,22 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
 import { useRouter } from 'next/navigation';
-
 import { ShoppingCart, ArrowLeft } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
-
 import useCartStore from '@/stores/cartStore';
-
 import { getProductDetails } from '@/actions/catalog/getProductDetails';
-
 import ProductCatalog from '@/components/productCatalog';
-
 import { getRelatedProducts } from '@/actions/catalog/getRelatedProducts';
-
 import { toast } from 'sonner';
+import { IProduct } from '@/types/product';
+import { IProductsEntity } from 'oneentry/dist/products/productsInterfaces';
 
 export default function ProductDetailPage({
   params: paramsPromise,
@@ -24,24 +18,19 @@ export default function ProductDetailPage({
   params: Promise<{ productId: string }>;
 }) {
   const [productId, setProductId] = useState<string | null>(null);
-
-  const [product, setProduct] = useState<any>(null);
-
-  const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
-
+  const [product, setProduct] = useState<IProduct | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<
+    Array<Record<string, unknown>>
+  >([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const router = useRouter();
-
   const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
     const unwrapParams = async () => {
       const { productId } = await paramsPromise;
-
       setProductId(productId);
     };
-
     unwrapParams();
   }, [paramsPromise]);
 
@@ -51,18 +40,15 @@ export default function ProductDetailPage({
 
       try {
         const productData = await getProductDetails(parseInt(productId));
+        setProduct(productData as unknown as IProduct);
 
-        setProduct(productData);
-
-        const relatedProductsData = await getRelatedProducts(
-          // @ts-ignore
-
-          parseInt(productData?.productPages[0].pageId),
-
-          parseInt(productId)
-        );
-
-        setRelatedProducts(relatedProductsData);
+        if (productData?.productPages?.[0]?.pageId && productId) {
+          const relatedProductsData = await getRelatedProducts(
+            parseInt(productData.productPages[0].pageId, 10),
+            parseInt(productId, 10)
+          );
+          setRelatedProducts(relatedProductsData);
+        }
       } catch (error) {
         console.error('Failed to fetch product details:', error);
       } finally {
@@ -77,19 +63,13 @@ export default function ProductDetailPage({
     if (product) {
       addToCart({
         id: product.id,
-
         name: product.attributeValues.p_title.value || 'Product',
-
         price: product.attributeValues.p_price.value,
-
         quantity: 1,
-
         image: product.attributeValues.p_image.value.downloadLink,
       });
-
       toast('Added to Cart', {
         description: `${product.attributeValues.p_title.value} has been added to your cart.`,
-
         duration: 5000,
       });
     }
@@ -115,30 +95,29 @@ export default function ProductDetailPage({
         </button>
 
         {/* Product details */}
-
         <div className='grid md:grid-cols-2 gap-8'>
           <div className='relative overflow-hidden rounded-lg '>
             <img
-              src={product.attributeValues.p_image.value.downloadLink}
-              alt={product.name}
+              src={product?.attributeValues?.p_image?.value?.downloadLink || ''}
+              alt={product?.attributeValues?.p_title?.value || 'Product Image'}
               className='object-contain w-full max-h-[400px] transition-transform duration-300 transform hover:scale-105'
             />
           </div>
 
           <div className='space-y-6'>
             <h1 className='text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
-              {product.attributeValues.p_title.value}
+              {product?.attributeValues?.p_title?.value || 'Product Title'}
             </h1>
 
             <p className='text-xl font-semibold text-gray-700'>
-              ${product.attributeValues.p_price.value.toFixed(2)}
+              ${product?.attributeValues?.p_price?.value?.toFixed(2) || '0.00'}
             </p>
-
             <div
               className='text-gray-500'
               dangerouslySetInnerHTML={{
                 __html:
-                  product.attributeValues.p_description.value[0].htmlValue,
+                  product?.attributeValues?.p_description?.value?.[0]
+                    ?.htmlValue || '',
               }}
             />
 
@@ -155,12 +134,11 @@ export default function ProductDetailPage({
         </div>
 
         {/* Related products */}
-
         {relatedProducts.length > 0 && (
           <section className='mt-16'>
             <ProductCatalog
               title='Related Products'
-              products={relatedProducts}
+              products={relatedProducts as unknown as IProductsEntity[]}
             />
           </section>
         )}

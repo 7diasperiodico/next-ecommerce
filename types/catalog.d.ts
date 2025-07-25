@@ -1,14 +1,11 @@
- import { IProduct } from './product';
+import { IProduct } from "./product";
 
- export interface ICatalog {
-   id: number;
-
-   localizeInfos: {
-    title: string;
-   };
-
-   catalogProducts: {
+export interface ICatalog {
+  id: number;
+  localizeInfos?: {
+    title?: string;
+  };
+  catalogProducts: {
     items: IProduct[];
-   };
+  };
 }
-

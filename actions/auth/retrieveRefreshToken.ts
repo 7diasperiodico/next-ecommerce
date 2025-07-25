@@ -1,9 +1,8 @@
-  'use server'
- 
-  import { cookies } from 'next/headers';
+'use server';
 
-  export default async function retrieveRefreshToken() {
-    const cookie = await cookies();
+import { cookies } from 'next/headers';
 
-    return cookie.get('refresh_token')?.value;
-  }
+export default async function retrieveRefreshToken() {
+  const cookieStore = await cookies();
+  return cookieStore.get('refresh_token')?.value;
+}

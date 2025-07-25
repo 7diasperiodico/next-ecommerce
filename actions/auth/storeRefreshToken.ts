@@ -1,9 +1,8 @@
-   'use server'
-  
-   import { cookies } from 'next/headers';
- 
-   export default async function storeRefreshToken(token: string) {
-     const cookie = await cookies();
- 
-     return cookie.set('refresh_token',token);
-   }
+'use server';
+
+import { cookies } from 'next/headers';
+
+export default async function storeRefreshToken(token: string) {
+  const cookieStore = await cookies();
+  return cookieStore.set('refresh_token', token);
+}

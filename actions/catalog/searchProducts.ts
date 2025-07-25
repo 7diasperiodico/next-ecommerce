@@ -1,4 +1,4 @@
- 'use server';
+'use server';
 
 import { fetchApiClient } from '@/lib/oneentry';
 
@@ -15,7 +15,6 @@ export const searchProductsAction = async ({ query }: SearchParams) => {
     return products || []; // Return product items or empty array
   } catch (error) {
     console.error('Error searching products:', error);
-
     throw new Error(
       `Product search failed: ${
         error instanceof Error ? error.message : 'Unknown error'
