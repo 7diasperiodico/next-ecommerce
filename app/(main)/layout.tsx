@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import React from 'react';
 
 const layout = ({
@@ -9,7 +10,8 @@ const layout = ({
   return (
     <div className=''>
       <Navbar />
-      <div className='py-20'>{children}</div>
+      <div className='pb-10'>{children}</div>
+      <Footer />
     </div>
   );
 };

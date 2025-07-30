@@ -1,5 +1,7 @@
 'use client';
 
+import { assets } from "@/assets/assets";
+import Image from "next/image";
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -83,26 +85,35 @@ export default function Navbar() {
 
   return (
     <nav>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b-2 border-gray-200'>
+      <div className='max-w-auto mx-auto px-4 sm:px-6 lg:px-8 border-b-2 border-gray-200 bg-[#0066D7]'>
         <div className='flex items-center justify-between h-16'>
           <div className='flex items-center'>
-            <Link href='/' className='flex-shrink-0'>
-              <span className='text-2xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
-                SahandShop
-              </span>
-            </Link>
+      <Image
+        className="cursor-pointer w-28 md:w-32"
+        onClick={() => router.push('/')}
+        src={assets.logo}
+        alt="lupa"
+      />
           </div>
           <div className='hidden md:flex items-center space-x-4 '>
             <div className='mr-64'>
               <form onSubmit={handleSearch}>
-                <Input
+                <div className="flex items-center bg-gray-100 border border-gray-200 rounded px-3 py-1 min-w-60">
+                <input
                   type='text'
                   placeholder='Search products...'
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className='bg-gray-100 border-gray-400 min-w-48 '
+                  className='bg-gray-100 outline-none flex-grow pr-2 border-none shadow-none focus:shadow-none focus:outline-none focus:ring-0 w-96'
                 />
-              </form>
+              <span className="mx-2 text-gray-300">|</span>
+                 <Image
+                  className="w-4 h-4"
+                  src={assets.lupa}
+                  alt="logo"
+                     />
+                </div>
+             </form>
             </div>
 
             <div>
@@ -112,9 +123,9 @@ export default function Navbar() {
                   className='relative bg-transparent hover:bg-transparent cursor-pointer pt-2'
                   variant='ghost'
                 >
-                  <ShoppingCart className='h-5 w-5 text-gray-600 hover:text-purple-500' />
+                  <ShoppingCart className='h-5 w-5 text-white' />
                   {cartItems.length > 0 && (
-                    <span className='absolute top-[-3px] right-[-3px] inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full'>
+                    <span className='absolute top-[-3px] right-[-3px] inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-[#002055] bg-[#00FCF7] rounded-full'>
                       {cartItems.length}
                     </span>
                   )}
@@ -196,8 +207,7 @@ export default function Navbar() {
                 <div>
                   <Link href='/auth?type=login'>
                     <Button
-                      variant='outline'
-                      className='bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent border-2 border-gray-300 cursor-pointer'
+                      className='text-white bg-[#0066D7] cursor-pointer hover:!bg-[#0066D7] hover:!text-white'
                     >
                       Login
                     </Button>
@@ -205,7 +215,7 @@ export default function Navbar() {
                 </div>
                 <div>
                   <Link href='/auth?type=signup'>
-                    <Button className='bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white cursor-pointer'>
+                    <Button className='text-white bg-[#0066D7] cursor-pointer hover:!bg-[#0066D7] hover:!text-white'>
                       Sign Up
                     </Button>
                   </Link>

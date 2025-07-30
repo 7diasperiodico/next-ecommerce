@@ -1,13 +1,135 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import { assets } from "@/assets/assets";
+import Image from "next/image";
 import { getCatalogWithProducts } from '@/actions/catalog/getCatalogWithProducts';
 
-import ProductCatalog from '@/components/productCatalog'; 
+import ProductCatalog from '@/components/productCatalog';
 import { ICatalog } from '@/types/catalog';
 import { IProductsEntity } from 'oneentry/dist/products/productsInterfaces';
+
+const HeaderSlider = () => {
+  const originalSlides = [
+    {
+      id: 1,
+      title: "Feel the COLD - Air conditioning offers",
+      offer: "%30 Off for a limited time",
+      buttonText1: "Buy now",
+      buttonText2: "See more",
+      imgSrc: assets.header_headphone_image,
+    },
+    {
+      id: 2,
+      title: "Sales arrived - Cool your home today",
+      offer: "Last unit available!",
+      buttonText1: "Buy now",
+      buttonText2: "Explore offers",
+      imgSrc: assets.header_playstation_image,
+    },
+    {
+      id: 3,
+      title: "Power with elegance - Minisplit SMART",
+      offer: "Save 40% with our discounts",
+      buttonText1: "Buy now",
+      buttonText2: "See more",
+      imgSrc: assets.header_macbook_image,
+    },
+  ];
+
+  const sliderData = [
+    originalSlides[originalSlides.length - 1], // clone last
+    ...originalSlides,
+    originalSlides[0], // clone first
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(1); // start at the real first
+  const [transitioning, setTransitioning] = useState(true);
+  const slideRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => prev + 1);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (currentSlide === sliderData.length - 1) {
+      setTimeout(() => {
+        setTransitioning(false);
+        setCurrentSlide(1); // jump to real first
+      }, 700); // match transition duration
+    } else if (currentSlide === 0) {
+      setTimeout(() => {
+        setTransitioning(false);
+        setCurrentSlide(sliderData.length - 2); // jump to real last
+      }, 700);
+    } else {
+      setTransitioning(true);
+    }
+  }, [currentSlide]);
+
+  const handleSlideChange = (index: number) => {
+    setTransitioning(true);
+    setCurrentSlide(index + 1); // compensate for cloned first
+  };
+
+  return (
+    <div className="overflow-hidden relative w-full">
+      <div
+        ref={slideRef}
+        className={`flex ${transitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
+        style={{
+          transform: `translateX(-${currentSlide * 100}%)`,
+        }}
+      >
+        {sliderData.map((slide, index) => (
+          <div
+            key={index}
+            className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 min-w-full"
+          >
+            <div className="md:pl-8 mt-10 md:mt-0">
+              <p className="md:text-base text-[#00B2EF] pb-1">{slide.offer}</p>
+              <h1 className="max-w-lg md:text-[40px] md:leading-[48px] text-2xl font-semibold">
+                {slide.title}
+              </h1>
+              <div className="flex items-center mt-4 md:mt-6 ">
+                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-[#00B2EF] rounded-full text-white font-medium">
+                  {slide.buttonText1}
+                </button>
+                <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
+                  {slide.buttonText2}
+                  <Image className="group-hover:translate-x-1 transition" src={assets.arrow_icon} alt="arrow_icon" />
+                </button>
+              </div>
+            </div>
+            <div className="flex items-center flex-1 justify-center">
+              <Image
+                className="md:w-72 w-48"
+                src={slide.imgSrc}
+                alt={`Slide ${index + 1}`}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-center gap-2 mt-8">
+        {originalSlides.map((_, index) => (
+          <div
+            key={index}
+            onClick={() => handleSlideChange(index)}
+            className={`h-2 w-2 rounded-full cursor-pointer ${
+              currentSlide === index + 1 ? "bg-[#00B2EF]" : "bg-gray-500/30"
+            }`}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function HomePage() {
   const [products, setProducts] = useState<ICatalog[]>([]);
@@ -39,33 +161,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className='min-h-screen'>
-      <main className='container mx-auto px-4 py-8'>
-        <section className='mb-12 '>
-          <div className='relative overflow-hidden rounded-lg shadow-lg '>
-            <div className='w-full h-[400px] relative'>
-              <div className='absolute inset-0 flex flex-col justify-center items-center text-center p-8'>
-                <h2 className='text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent z-3'>
-                  Welcome to our Store!
-                </h2>
-                <p className='text-xl mb-8 text-gray-700 z-4'>
-                  Discover the latest trends and exclusive deals on your
-                  favorite products. Shop now and enjoy a seamless shopping
-                  experience!
-                </p>
-                <img
-                  src='https://assets.entrepreneur.com/content/3x2/2000/20150812074510-Online-shopping.jpeg?format=pjeg&auto=webp&crop=16:9&width=675&height=380'
-                  alt='Hero Image'
-                  className='absolute inset-0 w-full h-full object-cover opacity-20 z-1'
-                />
-                <Button className='bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white z-2 cursor-pointer'>
-                  Shop Now
-                  <ArrowRight className='ml-2 h-4 w-4' />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+    <div>
+      <HeaderSlider />
+      <main>
         {isLoading && (
           <div className='flex justify-center items-center h-64'>
             <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-purple-900'></div>

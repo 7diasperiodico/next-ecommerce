@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Ecommerce website',
-  description: 'Ecommerce website built with Next.js and Tailwind CSS',
+  title: 'Nive',
+  description: 'Mini-split air conditioning installation and maintenance, including celling fans',
 };
 
 export default function RootLayout({
