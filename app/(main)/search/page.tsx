@@ -38,7 +38,7 @@ function SearchComponent() {
         <div className='flex flex-col lg:flex-row gap-8'>
           {isLoading ? (
             <div className='flex justify-center items-center h-64 w-full'>
-              <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-purple-900'></div>
+              <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-[#00FCF7]'></div>
             </div>
           ) : (
             <div
