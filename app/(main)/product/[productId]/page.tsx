@@ -78,7 +78,7 @@ export default function ProductDetailPage({
   if (isLoading) {
     return (
       <div className=' flex items-center justify-center'>
-        <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-purple-900'></div>
+        <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-[#00FCF7]'></div>
       </div>
     );
   }
@@ -87,7 +87,7 @@ export default function ProductDetailPage({
     <div className='min-h-screen'>
       <main className='container mx-auto px-4 py-8'>
         <button
-          className='mb-8 flex items-center text-purple-500 hover:text-purple-600 transition-colors duration-300 cursor-pointer'
+          className='mb-8 flex items-center text-[#0066D7] transition-colors duration-300 cursor-pointer'
           onClick={() => router.back()}
         >
           <ArrowLeft className='mr-2 h-5 w-5' />
@@ -105,7 +105,7 @@ export default function ProductDetailPage({
           </div>
 
           <div className='space-y-6'>
-            <h1 className='text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
+            <h1 className='text-3xl font-bold bg-black bg-clip-text text-transparent'>
               {product?.attributeValues?.p_title?.value || 'Product Title'}
             </h1>
 
@@ -121,17 +121,26 @@ export default function ProductDetailPage({
               }}
             />
 
-            <div className='flex space-x-4'>
-              <Button
-                className='flex-1 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white font-semibold cursor-pointer'
-                onClick={handleAddToCart}
-              >
-                <ShoppingCart className='mr-2 h-5 w-5' />
-                Add to Cart
-              </Button>
+    <div className='flex flex-col space-y-2'>
+      <Button
+        className='bg-[#0066D7] hover:bg-blue-800 text-white font-semibold cursor-pointer'
+        onClick={handleAddToCart}
+      >
+        <ShoppingCart className='mr-2 h-5 w-5' />
+        Add to Cart
+      </Button>
+
+    <a
+       href="https://wa.me/5215555555555?text=Hola%2C%20quiero%20agendar%20una%20instalaci%C3%B3n"
+       className="text-lg text-[#0066D7] text-center no-underline"
+       target="_blank"
+       rel="noopener noreferrer"
+    >
+      Agenda la instalación
+    </a>
             </div>
           </div>
-        </div>
+        </div>      
 
         {/* Related products */}
         {relatedProducts.length > 0 && (

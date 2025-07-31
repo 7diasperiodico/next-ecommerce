@@ -14,25 +14,11 @@ const HeaderSlider = () => {
     {
       id: 1,
       title: "Feel the COLD - Air conditioning offers",
-      offer: "%30 Off for a limited time",
-      buttonText1: "Buy now",
-      buttonText2: "See more",
       imgSrc: assets.header_headphone_image,
-    },
-    {
-      id: 2,
-      title: "Sales arrived - Cool your home today",
-      offer: "Last unit available!",
-      buttonText1: "Buy now",
-      buttonText2: "Explore offers",
-      imgSrc: assets.header_playstation_image,
     },
     {
       id: 3,
       title: "Power with elegance - Minisplit SMART",
-      offer: "Save 40% with our discounts",
-      buttonText1: "Buy now",
-      buttonText2: "See more",
       imgSrc: assets.header_macbook_image,
     },
   ];
@@ -91,19 +77,9 @@ const HeaderSlider = () => {
             className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 min-w-full"
           >
             <div className="md:pl-8 mt-10 md:mt-0">
-              <p className="md:text-base text-[#00B2EF] pb-1">{slide.offer}</p>
               <h1 className="max-w-lg md:text-[40px] md:leading-[48px] text-2xl font-semibold">
                 {slide.title}
               </h1>
-              <div className="flex items-center mt-4 md:mt-6 ">
-                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-[#00B2EF] rounded-full text-white font-medium">
-                  {slide.buttonText1}
-                </button>
-                <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
-                  {slide.buttonText2}
-                  <Image className="group-hover:translate-x-1 transition" src={assets.arrow_icon} alt="arrow_icon" />
-                </button>
-              </div>
             </div>
             <div className="flex items-center flex-1 justify-center">
               <Image
@@ -166,7 +142,7 @@ export default function HomePage() {
       <main>
         {isLoading && (
           <div className='flex justify-center items-center h-64'>
-            <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-purple-900'></div>
+            <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-[#00FCF7]'></div>
           </div>
         )}
         {products.map((catalog) => (

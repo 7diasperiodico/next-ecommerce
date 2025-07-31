@@ -196,14 +196,14 @@ export default function CartPage() {
         {!isLoading && cartItems.length === 0 && (
           <div className='text-center py-12'>
             <ShoppingCart className='mx-auto h-16 w-16 text-gray-400 mb-4' />
-            <h2 className='text-2xl font-semibold mb-2 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
+            <h2 className='text-2xl font-semibold mb-2 bg-[#0066D7] bg-clip-text text-transparent'>
               Your cart is empty
             </h2>
             <p className='text-gray-400 mb-6'>
               Looks like you haven&apos;t added any items to your cart yet.
             </p>
             <Button
-              className='bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white font-semibold cursor-pointer'
+              className='bg-[#0066D7] hover:bg-blue-800 text-white font-semibold cursor-pointer'
               onClick={() => router.push('/')}
             >
               Continue Shopping
