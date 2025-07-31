@@ -125,13 +125,13 @@ function AuthForm() {
 
           {/* Form header */}
           <div>
-            <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent pb-3'>
+            <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-[#0066D7] bg-clip-text text-transparent pb-3'>
               {isSignUp ? 'Sign Up' : 'Sign In'}
             </h2>
             <p className='text-base sm:text-lg lg:text-xl text-gray-400 mb-6 sm:mb-8'>
               {isSignUp
-                ? 'Join SahandStore today and discover exclusive deals on your favorite products!'
-                : 'Welcome back to SahandStore! Log in to continue your shopping journey.'}
+                ? 'Join NIVE today and discover exclusive deals on your products'
+                : 'Welcome back to NIVE Log in to continue your shopping journey.'}
             </p>
           </div>
 
@@ -139,7 +139,7 @@ function AuthForm() {
 
           {isLoading ? (
             <div className='flex justify-center items-center h-64'>
-              <Loader2 className='h-8 w-8 animate-spin text-purple-500' />
+              <Loader2 className='h-8 w-8 animate-spin text-blue-300' />
             </div>
           ) : (
             <form className='space-y-4 sm:space-y-6' onSubmit={handleSubmit}>
@@ -174,7 +174,7 @@ function AuthForm() {
 
               <div>
                 <Button
-                  className='w-full bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white text-base sm:text-xl font-bold p-4 sm:p-6 rounded-md shadow-xl transition-colors duration-300 ease-in-out cursor-pointer'
+                  className='w-full bg-[#0066D7] text-white text-base sm:text-xl font-bold p-4 sm:p-6 rounded-md shadow-xl cursor-pointer'
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

@@ -74,13 +74,13 @@ export default function CartPage() {
   return (
     <div className='min-h-screen  p-4 sm:p-8'>
       <div className='max-w-4xl mx-auto'>
-        <h1 className='text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
+        <h1 className='text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 bg-[#0066D7] bg-clip-text text-transparent'>
           Your Cart
         </h1>
 
         {isLoading ? (
           <div className='flex justify-center items-center h-64'>
-            <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-purple-900'></div>
+            <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-[#00FCF7]'></div>
           </div>
         ) : (
           <>
@@ -98,7 +98,7 @@ export default function CartPage() {
                         className='w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-md'
                       />
                       <div className='flex-1'>
-                        <h3 className='text-lg font-semibold bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent line-clamp-1'>
+                        <h3 className='text-lg font-semibold bg-black bg-clip-text text-transparent line-clamp-1'>
                           {item.name}
                         </h3>
                         <p className='text-gray-400'>
@@ -113,7 +113,7 @@ export default function CartPage() {
                           onClick={() =>
                             updateQuantity(item.id, item.quantity - 1)
                           }
-                          className='bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white cursor-pointer'
+                          className='bg-[#0066D7] hover:bg-blue-800 text-white cursor-pointer'
                         >
                           <Minus className='h-4 w-4' />
                         </Button>
@@ -124,14 +124,14 @@ export default function CartPage() {
                           onChange={(e) =>
                             updateQuantity(item.id, parseInt(e.target.value))
                           }
-                          className='w-16  border-gray-600 text-center bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'
+                          className='w-16  border-gray-600 text-center bg-black bg-clip-text text-transparent'
                         />
                         <Button
                           size='icon'
                           onClick={() =>
                             updateQuantity(item.id, item.quantity + 1)
                           }
-                          className='bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white cursor-pointer'
+                          className='bg-[#0066D7] hover:bg-blue-800 text-white cursor-pointer'
                         >
                           <Plus className='h-4 w-4' />
                         </Button>
@@ -151,7 +151,7 @@ export default function CartPage() {
             </div>
 
             <div className='p-4 sm:p-6 rounded-lg border-gray-200 border-2 shadow-lg mt-8'>
-              <h2 className='text-xl sm:text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
+              <h2 className='text-xl sm:text-2xl font-semibold mb-4 bg-[#0066D7] bg-clip-text text-transparent'>
                 Order Summary
               </h2>
               <div className='space-y-2'>
@@ -166,14 +166,14 @@ export default function CartPage() {
                 <div className='border-t border-gray-700 my-2'></div>
                 <div className='flex justify-between text-lg font-semibold'>
                   <span>Total</span>
-                  <span className='bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
+                  <span className='bg-black bg-clip-text text-transparent'>
                     ${total.toFixed(2)}
                   </span>
                 </div>
               </div>
               {user ? (
                 <Button
-                  className='w-full mt-6 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white font-semibold cursor-pointer'
+                  className='w-full mt-6 bg-[#0066D7] hover:bg-blue-800 text-white font-semibold cursor-pointer'
                   disabled={!cartItems.length}
                   onClick={createOrderAndCheckout}
                 >
@@ -182,7 +182,7 @@ export default function CartPage() {
                 </Button>
               ) : (
                 <Button
-                  className='w-full mt-6 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white font-semibold cursor-pointer'
+                  className='w-full mt-6 bg-[#0066D7] hover:bg-blue-800 text-white font-semibold cursor-pointer'
                   onClick={() => router.push('/auth?type=login')}
                 >
                   <LogIn className='mr-2 h-5 w-5' />

@@ -62,13 +62,13 @@ export default function MyOrdersPage() {
   return (
     <div className='min-h-screen p-8'>
       <div className='max-w-4xl mx-auto'>
-        <h1 className='text-4xl font-bold text-center mb-12  bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
+        <h1 className='text-4xl font-bold text-center mb-12  bg-[#00B2EF] bg-clip-text text-transparent'>
           My Orders
         </h1>
 
         {isLoading ? (
           <div className='flex items-center justify-center pt-7'>
-            <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-purple-900'></div>
+            <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-[#00FCF7]'></div>
           </div>
         ) : (
           <>
@@ -79,10 +79,10 @@ export default function MyOrdersPage() {
               >
                 <div className='p-6'>
                   <div className='flex justify-between items-center mb-4'>
-                    <h2 className='text-2xl font-semibold text-purple-500'>
+                    <h2 className='text-2xl font-semibold text-[#00B2EF]'>
                       Order #{order.id}
                     </h2>
-                    <Badge className={` text-white bg-purple-900`}>
+                    <Badge className={` text-white bg-[#00B2EF]`}>
                       {
                         orderStatusIcons[
                           order.statusIdentifier as keyof typeof orderStatusIcons
@@ -108,14 +108,14 @@ export default function MyOrdersPage() {
                             className='flex items-center space-x-4'
                           >
                             <div className='flex-1'>
-                              <h3 className='font-semibold text-purple-500'>
+                              <h3 className='font-semibold text-[#00B2EF]'>
                                 {item.title}
                               </h3>
                               <p className='text-gray-500'>
                                 Quantity: {item.quantity}
                               </p>
                             </div>
-                            <span className='text-purple-500 font-semibold'>
+                            <span className='text-[#00B2EF] font-semibold'>
                               ${item.price.toFixed(2)}
                             </span>
                           </div>
@@ -132,14 +132,14 @@ export default function MyOrdersPage() {
         {!isLoading && orders?.total === 0 && (
           <div className='text-center py-12 border-2 border-gray-200 rounded-lg bg-gray-100'>
             <XSquareIcon className='mx-auto h-16 w-16 text-red-400 mb-4' />
-            <h2 className='text-2xl font-semibold mb-2 text-purple-500'>
+            <h2 className='text-2xl font-semibold mb-2 text-black'>
               No orders found
             </h2>
             <p className='text-gray-400 mb-6'>
               You haven`&apos;`t placed any orders yet. Start shopping now!
             </p>
             <Button
-              className='flex-1 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white font-semibold cursor-pointer'
+              className='flex-1 bg-[#00B2EF] hover:to-blue-500 text-white font-semibold cursor-pointer'
               onClick={() => router.push('/')}
             >
               Continue Shopping

@@ -101,25 +101,25 @@ export default function ProfilePage() {
   return (
     <div className='min-h-screen  p-8'>
       <div className='max-w-4xl mx-auto'>
-        <h1 className='text-4xl font-bold text-center mb-12  bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent'>
+        <h1 className='text-4xl font-bold text-center mb-12  bg-[#0066D7] bg-clip-text text-transparent'>
           My Profile
         </h1>
 
         {isLoading ? (
           <div className='flex items-center justify-center pt-7'>
-            <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-purple-900'></div>
+            <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-[#00FCF7]'></div>
           </div>
         ) : (
           <>
             <div className='bg-gray-2 border-2 p-6 rounded-lg shadow-lg mb-8'>
               <div className='flex items-center space-x-4'>
-                <Avatar className='h-24 w-24 text-6xl text-purple-500'>
-                  <AvatarFallback className='bg-purple-500 text-gray-100'>
+                <Avatar className='h-24 w-24 text-6xl text-[#00B2EF]'>
+                  <AvatarFallback className='bg-[#00B2EF] text-gray-100'>
                     {user?.formData[0].value.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <h2 className='text-2xl font-semibold text-purple-500'>
+                  <h2 className='text-2xl font-semibold text-[#0066D7]'>
                     {user?.formData[0].value}
                   </h2>
                   <p className='text-gray-500'>{user?.identifier}</p>
@@ -128,22 +128,22 @@ export default function ProfilePage() {
             </div>
 
             <div className='border-2 p-6 rounded-lg shadow-lg'>
-              <h3 className='text-xl font-semibold mb-4 text-purple-500'>
+              <h3 className='text-xl font-semibold mb-4 text-[#0066D7]'>
                 My Stats
               </h3>
               <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                 <StatCard
-                  icon={<Package className='h-8 w-8 text-purple-500' />}
+                  icon={<Package className='h-8 w-8 text-[#0066D7]' />}
                   title='Lifetime Orders'
                   value={stats.lifetimeOrders}
                 />
                 <StatCard
-                  icon={<DollarSign className='h-8 w-8 text-purple-500' />}
+                  icon={<DollarSign className='h-8 w-8 text-[#0066D7]' />}
                   title='Lifetime Spent'
                   value={`$${stats.lifetimeSpent.toFixed(2)}`}
                 />
                 <StatCard
-                  icon={<Calendar className='h-8 w-8 text-purple-500' />}
+                  icon={<Calendar className='h-8 w-8 text-[#0066D7]' />}
                   title='This Year'
                   value={`${stats.yearlyOrders} orders`}
                   subvalue={`$${stats.yearlySpent.toFixed(2)} spent`}
@@ -173,7 +173,7 @@ function StatCard({
       {icon}
       <div>
         <h4 className='text-sm font-medium text-gray-500'>{title}</h4>
-        <p className='text-2xl font-bold text-purple-500'>{value}</p>
+        <p className='text-2xl font-bold text-[#0066D7]'>{value}</p>
         {subvalue && <p className='text-sm text-gray-700'>{subvalue}</p>}
       </div>
     </div>

@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="w-4/5">
           <Image className="w-28 md:w-32" src={assets.logofooter} alt="logo" />
           <p className="mt-6 text-sm text-white">
-            We offer work to professional installers of fans and air conditioners with maintenance skills. Contact us and join our team.
+            We offer work to professional installers of ceiling fans and air conditioners with maintenance skills. Contact us and join our team.
           </p>
         </div>
 
@@ -35,16 +35,16 @@ const Footer = () => {
 
         <div className="w-1/2 flex items-center justify-start md:justify-center">
           <div>
-            <h2 className="font-medium text-white mb-5">Menu</h2>
+            <h2 className="font-medium text-white mb-5">Support</h2>
             <ul className="text-sm space-y-2">
               <li>
-                <a className="text-white hover:underline transition" href="#">Main</a>
+                <a className="text-white hover:underline transition" href="#">Installation</a>
               </li>
               <li>
-                <a className="text-white hover:underline transition" href="#">About Us</a>
+                <a className="text-white hover:underline transition" href="#">Maintenance</a>
               </li>
               <li>
-                <a className="text-white hover:underline transition" href="#">Contact</a>
+                <a className="text-white hover:underline transition" href="#">Orders</a>
               </li>
             </ul>
           </div>

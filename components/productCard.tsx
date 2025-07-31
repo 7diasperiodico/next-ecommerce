@@ -38,7 +38,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
         </Link>
         <div className='p-4 flex-grow'>
           <Link href={`/product/${product.id}`}>
-            <h3 className='text-xl mb-2 text-gray-700 group-hover:text-purple-500 transition-colors duration-300 line-clamp-1'>
+            <h3 className='text-xl mb-2 text-gray-700 group-hover:text-[#00FCF7] transition-colors duration-300 line-clamp-1'>
               {product.attributeValues.p_title.value}
             </h3>
           </Link>
@@ -54,13 +54,13 @@ const ProductCard = ({ product }: { product: IProduct }) => {
         </div>
         <div className='p-4'>
           <Button
-            className='w-full bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white font-semibold cursor-pointer'
+            className='ient-tw-full bg-[#0066D7] hover:bg-blue-800 text-white font-semibold cursor-pointer'
             onClick={() => handleAddToCart(product)}
           >
             <ShoppingCart className='w-5 h-5 mr-2' />
             Add to Cart
           </Button>
-          <div className='absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 text-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300'></div>
+          <div className='absolute inset-x-0 bottom-0 h-1 bg-[#00FCF7] text-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300'></div>
         </div>
       </div>
     </div>
